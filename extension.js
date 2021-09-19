@@ -20,7 +20,7 @@ function activate(context) {
 			}
 		}),
 		vscode.workspace.onDidSaveTextDocument((editor) => {
-			if (editor) {
+			if (editor && !vscode.workspace.getConfiguration().get("unexcept.onlyOnce")) {
 				foldAllCodeBlocks();
 			}
 		}),
@@ -29,7 +29,7 @@ function activate(context) {
 
 function linesToCollapse(content) {
 	var lines = [];
-	lineCounter = 0
+	var lineCounter = 0
 	for (let line of content.split("\n")){
 		if (line.includes("catch") || line.includes("except") || line.includes("err != nil")){
 			lines.push(lineCounter);

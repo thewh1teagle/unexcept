@@ -4,21 +4,34 @@
 	"description": "tired of junky exceptions everywhere? Use unexcept! and collapse every exception.",
 	"version": "0.0.1",
 	"engines": {
-		"vscode": "^1.60.0"
+		"vscode": "^1.50.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
 		"onCommand:unexcept.activate",
-		"*"
+		"onStartupFinished"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "unexcept.helloWorld",
-				"title": "Hello World"
+				"command": "unexcept.activate",
+				"title": "collapse",
+				"category": "unexcept"
+			}
+		],
+		"configuration":[
+			{
+				"title": "Unexcept",
+				"properties": {
+					"unexcept.onlyOnce":{
+						"type": "boolean",
+						"default": false,
+						"description": "collapse only when the document open"
+					}
+				}
 			}
 		]
 	},
